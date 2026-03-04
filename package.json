@@ -1,0 +1,88 @@
+{
+  "name": "microservices-runner",
+  "displayName": "Microservices Runner",
+  "description": "Start and Stop all microservices from one button in VS Code",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "microservices.startAll",
+        "title": "Microservices: Start All",
+        "category": "Microservices"
+      },
+      {
+        "command": "microservices.stopAll",
+        "title": "Microservices: Stop All",
+        "category": "Microservices"
+      },
+      {
+        "command": "microservices.restartServices",
+        "title": "Microservices: Restart All",
+        "category": "Microservices"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Microservices Configuration",
+      "properties": {
+        "microservices.parentPath": {
+          "type": "string",
+          "description": "Absolute path to the folder containing all microservices",
+          "default": ""
+        },
+        "microservices.rememberParentPath": {
+          "type": "boolean",
+          "description": "Remember parentPath for future sessions",
+          "default": false
+        },
+        "microservices.services": {
+          "type": "array",
+          "description": "Array of user-defined microservices configuration objects.",
+          "default": [],
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Display name of the microservice terminal"
+              },
+              "folder": {
+                "type": "string",
+                "description": "Folder path (relative to parentPath if applicable)"
+              },
+              "shellPath": {
+                "type": "string",
+                "description": "Path or executable name for shell (e.g. cmd.exe, bash, pwsh, wsl.exe)"
+              },
+              "commands": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Commands to execute sequentially"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "vsce": "^2.13.0"
+  }
+}
