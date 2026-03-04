@@ -38,6 +38,11 @@ code --install-extension microservices-runner-1.0.0.vsix
 ```bash
 cursor --install-extension microservices-runner-1.0.0.vsix
 ```
+
+**For Antigravity:**
+```bash
+antigravity --install-extension microservices-runner-1.0.0.vsix
+```
 *(Make sure to provide the absolute path to the `.vsix` file if you are running this from another directory)*
 
 ---
